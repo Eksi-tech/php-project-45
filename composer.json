@@ -1,0 +1,12 @@
+{
+    "name": "hexlet/code",
+    "description": "study project hexlet",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Viktor Safonov",
+            "email": "viktor.safonov1223@gmail.com"
+        }
+    ],
+    "require": {}
+}
