@@ -3,52 +3,13 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../src/Engine.php';
+require_once __DIR__ . '/../src/Games/Even.php';
 
-use function cli\line;
-use function cli\prompt;
+runGame('Even');
 
-line('Welcome to the Brain Game!');
-$name = prompt('May I have your name?');
-line("Hello, %s!", $name);
 
-line('Answer "yes" if the number is even, otherwise answer "no".');
-$winningCounter = 0;
-function isEven($number)
-{
-    return $number % 2 === 0;
-}
 
-while ($winningCounter < 3) {
-    $number = rand(1, 20);
-    line('Question:' . "{$number}");
-    $answer = prompt('Your answer');
-
-    if (isEven($number)) {
-
-        if ($answer === 'yes') {
-            line("Correct!");
-            $winningCounter++;
-        }
-        elseif ($answer === 'no' || $answer != "yes") {
-            line("'$answer' is wrong answer ;(. Correct answer was 'yes'.
-Let's try again, $name!");
-            break;
-        }
-    }else{
-        if ($answer === 'yes'|| $answer != "no") {
-            line("'$answer' is wrong answer ;(. Correct answer was 'no'.
-Let's try again, $name!");
-            break;
-        }
-        elseif ($answer === 'no') {
-            line("Correct!");
-            $winningCounter++;
-        }
-    }
-    if ($winningCounter === 3) {
-        line("Congratulations, $name!");
-    }
-}
 
 
 

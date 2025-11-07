@@ -14,13 +14,10 @@
   },
   "bin": [
     "bin/brain-games",
-    "bin/brain-even"
+    "bin/brain-even",
+    "bin/brain-calc"
   ],
-  "autoload": {
-    "psr-4": {
-      "BrainGames\\": "src/"
-    }
-  },
+
   "require-dev": {
     "squizlabs/php_codesniffer": "^4.0"
   },
