@@ -14,3 +14,4 @@ Even - https://asciinema.org/a/PZIB0AMPHDWAigwTO2UAGq9PI
 Calc - https://asciinema.org/a/5gDhJ6Taqf9GAgZvAtUY4W16l
 Gcd - https://asciinema.org/a/bBiNGAePf6ZXq4p0odlB5zFD6
 Progression - https://asciinema.org/a/HawCHRR9MDuvTWbaOEE4d76Zh
+Prime - https://asciinema.org/a/JuOx3oZ2UACiALbcsQ5da10V2
