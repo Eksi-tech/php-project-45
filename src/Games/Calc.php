@@ -1,22 +1,24 @@
 <?php
 
-function getRules()
+function getRules(): string
 {
     return 'What is the result of the expression?';
 }
 
-function generateQuestion()
+function generateQuestion(): string
 {
-    $firstOperand = rand(1, 20);
-    $secondOperand = rand(1, 20);
+    $firstOperand = random_int(1, 20);
+    $secondOperand = random_int(1, 20);
     $actions = ["+", "-", "*"];
-    $operation = $actions[rand(0, 2)];
+    $operation = $actions[random_int(0, 2)];
     return "$firstOperand $operation $secondOperand";
 }
 
-function getCorrectAnswer($question)
+function getCorrectAnswer($question): int
 {
     list($firstOperand, $operation, $secondOperand) = explode(" ", $question);
+    $firstOperand = (int)$firstOperand;
+    $secondOperand = (int)$secondOperand;
     switch ($operation) {
         case "+":
             return $firstOperand + $secondOperand;

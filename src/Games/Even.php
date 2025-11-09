@@ -1,16 +1,16 @@
 <?php
 
-function getRules()
+function getRules(): string
 {
     return 'Answer "yes" if the number is even, otherwise answer "no".';
 }
 
-function generateQuestion()
+function generateQuestion(): int
 {
-    return rand(1, 20);
+    return random_int(1, 20);
 }
 
-function getCorrectAnswer($question)
+function getCorrectAnswer($question): string
 {
     return $question % 2 ? 'no' : 'yes';
 }

@@ -1,26 +1,24 @@
 <?php
 
-function getRules()
+function getRules(): string
 {
     return 'Find the greatest common divisor of given numbers.';
 }
 
-function generateQuestion()
+function generateQuestion(): string
 {
     if (rand(1, 3) === 1) {
-        // 33% случаев - гарантированный нетривиальный НОД
-        $base = rand(2, 25);
-        $firstNumber = $base * rand(2, 10);
-        $secondNumber = $base * rand(2, 10);
+        $base = random_int(2, 25);
+        $firstNumber = $base * random_int(2, 10);
+        $secondNumber = $base * random_int(2, 10);
     } else {
-        // 67% случаев - полностью случайные
-        $firstNumber = rand(1, 100);
-        $secondNumber = rand(1, 100);
+        $firstNumber = random_int(1, 100);
+        $secondNumber = random_int(1, 100);
     }
     return "$firstNumber $secondNumber";
 }
 
-function getCorrectAnswer($question)
+function getCorrectAnswer($question): int
 {
     list($secondNumber, $firstNumber ) = explode(" ", $question);
 
