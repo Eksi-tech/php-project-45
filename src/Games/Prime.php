@@ -10,7 +10,7 @@ function generateQuestion(): int
     return random_int(1, 101);
 }
 
-function getCorrectAnswer($question): string
+function getCorrectAnswer(string $question): string
 {
     $number = (int)$question;
     if ($number < 2) {
@@ -18,7 +18,7 @@ function getCorrectAnswer($question): string
     }
 
     for ($i = 2; $i * $i <= $number; $i++) {
-        if ($number % $i == 0) {
+        if ($number % $i === 0) {
             return 'no';
         }
     }

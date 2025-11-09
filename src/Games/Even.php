@@ -10,7 +10,12 @@ function generateQuestion(): int
     return random_int(1, 20);
 }
 
-function getCorrectAnswer($question): string
+function getCorrectAnswer(string $question): string
 {
-    return $question % 2 ? 'no' : 'yes';
+    //return (int)$question % 2 ? 'no' : 'yes';
+    if ((int) $question % 2 === 0) {
+        return "yes";
+    } else {
+        return "no";
+    }
 }

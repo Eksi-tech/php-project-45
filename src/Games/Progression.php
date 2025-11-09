@@ -27,18 +27,18 @@ function generateQuestion(): string
     return generateProgression();
 }
 
-function getCorrectAnswer($question): string
+function getCorrectAnswer(string $question): string
 {
     $elements = explode(" ", $question);
-    $hiddenIndex = array_search("..", $elements);
-    $intArray = array_map('intval', $elements);
+    $hiddenIndex = (int)array_search("..", $elements);
+    $intArray = array_map('intval', $elements, true);
     $len = count($elements);
 
-    if ($hiddenIndex != 0 && $hiddenIndex != $len  - 1) {
+    if ($hiddenIndex !== 0 && $hiddenIndex !== $len  - 1) {
         $step = ($intArray[$hiddenIndex + 1] -  $intArray[$hiddenIndex - 1]) / 2;
         $missedValue =  $intArray[$hiddenIndex - 1] + $step;
-    } elseif ($hiddenIndex == 0) {
-        $step = $elements[2] -  $intArray[1];
+    } elseif ($hiddenIndex === 0) {
+        $step = $intArray[2] -  $intArray[1];
         $missedValue =  $intArray[1] - $step;
     } else {
         $step =  $intArray[2] -  $intArray[1];

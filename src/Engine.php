@@ -3,7 +3,7 @@
 use function cli\line;
 use function cli\prompt;
 
-function runGame($gameName)
+function runGame(string $gameName): void
 {
     line('Welcome to the Brain Games!');
     $name = prompt('May I have your name?');
@@ -21,7 +21,7 @@ function runGame($gameName)
         $userAnswer = prompt('Your answer');
         $correctAnswer = getCorrectAnswer($question);
 
-        if ($userAnswer == $correctAnswer) {
+        if ($userAnswer === (string)$correctAnswer) {
             line('Correct!');
             $winCount++;
         } else {

@@ -18,18 +18,18 @@ function generateQuestion(): string
     return "$firstNumber $secondNumber";
 }
 
-function getCorrectAnswer($question): int
+function getCorrectAnswer(string $question): int
 {
     list($secondNumber, $firstNumber ) = explode(" ", $question);
 
     $firstNumber = (int)$firstNumber;
     $secondNumber = (int)$secondNumber;
 
-    if ($secondNumber == 0) {
+    if ($secondNumber === 0) {
         return $firstNumber;
     }
 
-    while ($secondNumber != 0) {
+    while ($secondNumber !== 0) {
         $temp = $secondNumber;
         $secondNumber = $firstNumber % $secondNumber;
         $firstNumber = $temp;

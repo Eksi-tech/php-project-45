@@ -14,7 +14,7 @@ function generateQuestion(): string
     return "$firstOperand $operation $secondOperand";
 }
 
-function getCorrectAnswer($question): int
+function getCorrectAnswer(string $question): int
 {
     list($firstOperand, $operation, $secondOperand) = explode(" ", $question);
     $firstOperand = (int)$firstOperand;
