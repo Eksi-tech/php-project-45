@@ -31,18 +31,17 @@ function getCorrectAnswer(string $question): string
 {
     $elements = explode(" ", $question);
     $hiddenIndex = (int)array_search("..", $elements);
-    $intArray = array_map('intval', $elements, true);
     $len = count($elements);
 
     if ($hiddenIndex !== 0 && $hiddenIndex !== $len  - 1) {
-        $step = ($intArray[$hiddenIndex + 1] -  $intArray[$hiddenIndex - 1]) / 2;
-        $missedValue =  $intArray[$hiddenIndex - 1] + $step;
+        $step = ((int)$elements[$hiddenIndex + 1] -  (int)$elements[$hiddenIndex - 1]) / 2;
+        $missedValue =  (int)$elements[$hiddenIndex - 1] + $step;
     } elseif ($hiddenIndex === 0) {
-        $step = $intArray[2] -  $intArray[1];
-        $missedValue =  $intArray[1] - $step;
+        $step = (int)$elements[2] -  (int)$elements[1];
+        $missedValue =  (int)$elements[1] - $step;
     } else {
-        $step =  $intArray[2] -  $intArray[1];
-        $missedValue =  $intArray[$len - 2] + $step;
+        $step =  (int)$elements[2] -  (int)$elements[1];
+        $missedValue =  (int)$elements[$len - 2] + $step;
     }
     return (string) $missedValue;
 }
