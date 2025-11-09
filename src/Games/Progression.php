@@ -30,7 +30,7 @@ function generateQuestion(): string
 function getCorrectAnswer(string $question): string
 {
     $elements = explode(" ", $question);
-    $hiddenIndex = (int)array_search("..", $elements,false);
+    $hiddenIndex = (int)array_search("..", $elements, false);
     $len = count($elements);
 
     if ($hiddenIndex !== 0 && $hiddenIndex !== $len  - 1) {
