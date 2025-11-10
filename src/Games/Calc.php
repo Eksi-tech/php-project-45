@@ -1,31 +1,41 @@
 <?php
 
-function getRules(): string
+namespace BrainGames\Games\Calc;
+
+use function BrainGames\Engine\runEngine;
+
+const RULES = 'What is the result of the expression?';
+
+function runGame(): void
 {
-    return 'What is the result of the expression?';
+    $generateData = function () {
+        $a = random_int(1, 50);
+        $b = random_int(1, 50);
+        $operations = ['+', '-', '*'];
+        $op = $operations[array_rand($operations)];
+
+        $question = "$a $op $b";
+        $answer = calculate($a, $b, $op);
+
+        return [
+            'question' => $question,
+            'answer' => (string)$answer
+        ];
+    };
+
+    runEngine($generateData, RULES);
 }
 
-function generateQuestion(): string
+function calculate(int $a, int $b, string $operation): int
 {
-    $firstOperand = random_int(1, 20);
-    $secondOperand = random_int(1, 20);
-    $actions = ["+", "-", "*"];
-    $operation = $actions[random_int(0, 2)];
-    return "$firstOperand $operation $secondOperand";
-}
-
-function getCorrectAnswer(string $question): int
-{
-    list($firstOperand, $operation, $secondOperand) = explode(" ", $question);
-    $firstOperand = (int)$firstOperand;
-    $secondOperand = (int)$secondOperand;
     switch ($operation) {
-        case "+":
-            return $firstOperand + $secondOperand;
-        case "-":
-            return $firstOperand - $secondOperand;
-        case "*":
-            return $firstOperand * $secondOperand;
+        case '+':
+            return $a + $b;
+        case '-':
+            return $a - $b;
+        case '*':
+            return $a * $b;
+        default:
+            throw new \InvalidArgumentException("Unknown operation: $operation");
     }
-    return 0;
 }

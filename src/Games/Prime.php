@@ -1,27 +1,37 @@
 <?php
 
-function getRules(): string
+namespace BrainGames\Games\Prime;
+
+use function BrainGames\Engine\runEngine;
+
+const RULES = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+
+function runGame(): void
 {
-    return 'Answer "yes" if given number is prime. Otherwise answer "no".';
+    $generateData = function () {
+        $number = random_int(1, 100);
+        $isPrime = isPrime($number);
+
+        return [
+            'question' => (string)$number,
+            'answer' => $isPrime ? 'yes' : 'no'
+        ];
+    };
+
+    runEngine($generateData, RULES);
 }
 
-function generateQuestion(): int
+function isPrime(int $number): bool
 {
-    return random_int(1, 101);
-}
-
-function getCorrectAnswer(string $question): string
-{
-    $number = (int)$question;
     if ($number < 2) {
-        return 'no';
+        return false;
     }
 
     for ($i = 2; $i * $i <= $number; $i++) {
         if ($number % $i === 0) {
-            return 'no';
+            return false;
         }
     }
 
-    return 'yes';
+    return true;
 }

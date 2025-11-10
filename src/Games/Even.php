@@ -1,21 +1,22 @@
 <?php
 
-function getRules(): string
-{
-    return 'Answer "yes" if the number is even, otherwise answer "no".';
-}
+namespace BrainGames\Games\Even;
 
-function generateQuestion(): int
-{
-    return random_int(1, 20);
-}
+use function BrainGames\Engine\runEngine;
 
-function getCorrectAnswer(string $question): string
+const RULES = 'Answer "yes" if the number is even, otherwise answer "no".';
+
+function runGame(): void
 {
-    //return (int)$question % 2 ? 'no' : 'yes';
-    if ((int) $question % 2 === 0) {
-        return "yes";
-    } else {
-        return "no";
-    }
+    $generateData = function () {
+        $number = random_int(1, 100);
+        $isEven = $number % 2 === 0;
+
+        return [
+            'question' => (string)$number,
+            'answer' => $isEven ? 'yes' : 'no'
+        ];
+    };
+
+    runEngine($generateData, RULES);
 }

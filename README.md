@@ -18,19 +18,20 @@
 **Доступные игры**
 1. Brain Even - Проверка на чётность
    Определите, является ли случайное число чётным. 
-make brain-even
+
+Команда: make brain-even
 Демонстрация - https://asciinema.org/a/PZIB0AMPHDWAigwTO2UAGq9PI
 
 2. Brain Calc - Калькулятор
    Решите простое арифметическое выражение. 
 
-make brain-calc
+Команда: make brain-calc
 Демонстрация - https://asciinema.org/a/5gDhJ6Taqf9GAgZvAtUY4W16l
 
 3. Brain GCD - Наибольший общий делитель 
    Найдите Наибольший общий делитель двух случайных чисел. 
 
-make brain-gcd
+Команда: make brain-gcd
 Демонстрация - https://asciinema.org/a/bBiNGAePf6ZXq4p0odlB5zFD6
 
 
@@ -38,13 +39,13 @@ make brain-gcd
 4. Brain Progression - Арифметическая прогрессия
    Найдите пропущенный элемент в прогрессии.
 
-make brain-progression
+Команда: make brain-progression
 Демонстрация - https://asciinema.org/a/HawCHRR9MDuvTWbaOEE4d76Zh
 
 5. Brain Prime - Простое число
    Определите, является ли число простым.
 
-make brain-prime
+Команда: make brain-prime
 Демонстрация - https://asciinema.org/a/JuOx3oZ2UACiALbcsQ5da10V2
 
 **Требования**

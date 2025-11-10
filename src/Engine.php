@@ -1,34 +1,35 @@
 <?php
 
+namespace BrainGames\Engine;
+
 use function cli\line;
 use function cli\prompt;
 
-function runGame(string $gameName): void
+const ROUNDS_COUNT = 3;
+
+function runEngine(callable $generateData, string $rules): void
 {
     line('Welcome to the Brain Games!');
     $name = prompt('May I have your name?');
     line("Hello, %s!", $name);
 
-    require_once __DIR__ . "/Games/$gameName.php";
-
-    $rules = getRules();
     line($rules);
 
-    $winCount = 0;
-    while ($winCount < 3) {
-        $question = generateQuestion();
+    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
+        $data = $generateData();
+        $question = $data['question'];
+        $correctAnswer = $data['answer'];
+
         line("Question: $question");
         $userAnswer = prompt('Your answer');
-        $correctAnswer = getCorrectAnswer($question);
 
-        if ($userAnswer === (string)$correctAnswer) {
-            line('Correct!');
-            $winCount++;
-        } else {
+        if ($userAnswer !== $correctAnswer) {
             line("'$userAnswer' is wrong answer ;(. Correct answer was '$correctAnswer'");
             line("Let's try again, $name!");
             return;
         }
+
+        line('Correct!');
     }
 
     line("Congratulations, $name!");

@@ -1,47 +1,37 @@
 <?php
 
-function getRules(): string
+namespace BrainGames\Games\Progression;
+
+use function BrainGames\Engine\runEngine;
+
+const RULES = 'What number is missing in the progression?';
+
+function runGame(): void
 {
-    return 'What number is missing in the progression?';
-}
+    $generateData = function () {
+        $start = random_int(1, 20);
+        $step = random_int(1, 5);
+        $length = random_int(5, 10);
+        $hiddenIndex = random_int(0, $length - 1);
 
-function generateProgression(): string
-{
-    $firstRandInt = random_int(1, 20);
-    $numberOfSteps = random_int(1, 5);
-    $progressionLen = random_int(5, 10);
-    $randomMissNum = random_int(0, $progressionLen - 1);
+        $progression = [];
+        $correctAnswer = 0;
 
-    $progression = [];
+        for ($i = 0; $i < $length; $i++) {
+            $value = $start + $i * $step;
+            if ($i === $hiddenIndex) {
+                $progression[] = '..';
+                $correctAnswer = $value;
+            } else {
+                $progression[] = $value;
+            }
+        }
 
-    for ($i = 0; $i < $progressionLen; $i++) {
-        $progression[] = $firstRandInt + $i * $numberOfSteps;
-    }
+        return [
+            'question' => implode(' ', $progression),
+            'answer' => (string)$correctAnswer
+        ];
+    };
 
-    $progression[$randomMissNum] = "..";
-    return implode(' ', $progression);
-}
-
-function generateQuestion(): string
-{
-    return generateProgression();
-}
-
-function getCorrectAnswer(string $question): string
-{
-    $elements = explode(" ", $question);
-    $hiddenIndex = (int)array_search("..", $elements, true);
-    $len = count($elements);
-
-    if ($hiddenIndex !== 0 && $hiddenIndex !== $len  - 1) {
-        $step = ((int)$elements[$hiddenIndex + 1] -  (int)$elements[$hiddenIndex - 1]) / 2;
-        $missedValue =  (int)$elements[$hiddenIndex - 1] + $step;
-    } elseif ($hiddenIndex === 0) {
-        $step = (int)$elements[2] -  (int)$elements[1];
-        $missedValue =  (int)$elements[1] - $step;
-    } else {
-        $step =  (int)$elements[2] -  (int)$elements[1];
-        $missedValue =  (int)$elements[$len - 2] + $step;
-    }
-    return (string) $missedValue;
+    runEngine($generateData, RULES);
 }

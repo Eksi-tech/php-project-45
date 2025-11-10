@@ -1,38 +1,39 @@
 <?php
 
-function getRules(): string
+namespace BrainGames\Games\Gcd;
+
+use function BrainGames\Engine\runEngine;
+
+const RULES = 'Find the greatest common divisor of given numbers.';
+
+function runGame(): void
 {
-    return 'Find the greatest common divisor of given numbers.';
+    $generateData = function () {
+        if (random_int(1, 3) === 1) {
+            $base = random_int(2, 25);
+            $a = $base * random_int(2, 10);
+            $b = $base * random_int(2, 10);
+        } else {
+            $a = random_int(1, 100);
+            $b = random_int(1, 100);
+        }
+
+        $question = "$a $b";
+        $answer = gcd($a, $b);
+
+        return [
+            'question' => $question,
+            'answer' => (string)$answer
+        ];
+    };
+
+    runEngine($generateData, RULES);
 }
 
-function generateQuestion(): string
+function gcd(int $a, int $b): int
 {
-    if (random_int(1, 3) === 1) {
-        $base = random_int(2, 25);
-        $firstNumber = $base * random_int(2, 10);
-        $secondNumber = $base * random_int(2, 10);
-    } else {
-        $firstNumber = random_int(1, 100);
-        $secondNumber = random_int(1, 100);
+    while ($b !== 0) {
+        [$a, $b] = [$b, $a % $b];
     }
-    return "$firstNumber $secondNumber";
-}
-
-function getCorrectAnswer(string $question): int
-{
-    list($secondNumber, $firstNumber ) = explode(" ", $question);
-
-    $firstNumber = (int)$firstNumber;
-    $secondNumber = (int)$secondNumber;
-
-    if ($secondNumber === 0) {
-        return $firstNumber;
-    }
-
-    while ($secondNumber !== 0) {
-        $temp = $secondNumber;
-        $secondNumber = $firstNumber % $secondNumber;
-        $firstNumber = $temp;
-    }
-    return $firstNumber;
+    return $a;
 }
