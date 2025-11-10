@@ -20,14 +20,6 @@
     "bin/brain-progression",
     "bin/brain-prime"
   ],
-
-  "require-dev": {
-    "squizlabs/php_codesniffer": "^4.0"
-  },
-  "scripts": {
-    "phpcs": "phpcs --standard=PSR12 src bin",
-    "phpcbf": "phpcbf --standard=PSR12 src bin"
-  },
   "autoload": {
     "files": [
       "src/Engine.php",
@@ -38,5 +30,12 @@
       "src/Games/Prime.php",
       "src/Games/Progression.php"
     ]
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^4.0"
+  },
+  "scripts": {
+    "phpcs": "phpcs --standard=PSR12 src bin",
+    "phpcbf": "phpcbf --standard=PSR12 src bin"
   }
 }

@@ -6,11 +6,6 @@ use function BrainGames\Engine\runEngine;
 
 const RULES = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-function isEven(int $number): bool
-{
-    return $number % 2 === 0;
-}
-
 function runGame(): void
 {
     $generateData = function () {
@@ -25,4 +20,9 @@ function runGame(): void
     };
 
     runEngine($generateData, RULES);
+}
+
+function isEven(int $number): bool
+{
+    return $number % 2 === 0;
 }

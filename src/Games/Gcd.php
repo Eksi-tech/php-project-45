@@ -19,7 +19,7 @@ function runGame(): void
         }
 
         $question = "$a $b";
-        $answer = gcd($a, $b);
+        $answer = getGcd($a, $b);
 
         return [
             'question' => $question,
@@ -30,7 +30,7 @@ function runGame(): void
     runEngine($generateData, RULES);
 }
 
-function gcd(int $a, int $b): int
+function getGcd(int $a, int $b): int
 {
     while ($b !== 0) {
         [$a, $b] = [$b, $a % $b];
