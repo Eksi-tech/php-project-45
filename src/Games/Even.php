@@ -15,7 +15,7 @@ function runGame(): void
 {
     $generateData = function () {
         $number = random_int(1, 100);
-        
+
         $isEven = isEven($number);
 
         return [
